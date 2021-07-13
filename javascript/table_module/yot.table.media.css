@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+
+
+@media screen and (max-width: 720px){
+	
+.yotSearch{
+flex-direction: column;
+}
+
+.yotSearch input[type='button']{
+width: 100%;
+margin-top: 20px;
+}
+
+
+}
