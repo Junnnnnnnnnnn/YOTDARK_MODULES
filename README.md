@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-# YOTDARK_MODULES
+YOTDARK README
+현지니 왔다감
 
-gggggggggggggggg
-=======
-# YOTDARK_MODULE
-
-
-aaaaaaaaaaaaaaaaaaaaS
->>>>>>> a8299b84ce61a8b6150d501eac384c393182f351
-
-zzzzzzzzzzzz
