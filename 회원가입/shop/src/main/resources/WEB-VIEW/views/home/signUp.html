@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        .bind{
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+        }
+        .bind span{
+            margin-top: 20px;
+        }
+        .bind input[type="button"]{
+            margin-top: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+    $(function(){
+        $(document).on("keyup","input[name='phone']",function(){
+            var text = $(this).val();
+            $(this).val(yotHphone(text));
+        });
+
+        $(document).on("click","#submit",function(){
+            indexSubmit();
+        });
+    });
+
+
+
+    function indexSubmit(){
+        var id = $(".bind input[name='id']").val();
+        var name = $(".bind input[name='name']").val();
+        var email = $(".bind input[name='email']").val();
+        var pass = $(".bind input[name='pass']").val();
+        var phone = $(".bind input[name='phone']").val();
+        console.log("id ::: ",id);
+        console.log("name ::: ",name);
+        console.log("email ::: ",email);
+        console.log("pass ::: ",pass);
+        console.log("phone ::: ",phone);
+        yotCommonConn({
+            url: "/member/new",
+            id: id,
+            name: name,
+            email: email,
+            pass: pass,
+            phone: phone,
+        });
+    }
+
+    function yotHphone(phone){
+        return phone.replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-");
+    }
+    function yotCommonConn(data){
+        var obj = new Object();
+        $.ajax({
+            url: data.url,
+            data: data,
+            dataType: "json",
+            type: "post",
+            async: "false",
+            success: function(result){
+                obj = result;
+            }
+        })
+        return obj;
+    }
+    </script>
+    <title>회원가입</title>
+</head>
+<body>
+
+    <p>회원가입</p>
+    <div class="bind">
+        <span>아이디</span>
+        <input type="text" name="id" placeholder="아이디를 입력하세요">
+        <span>이름</span>
+        <input type="text" name="name" placeholder="이름을 입력하세요">
+        <span>인증용 이메일</span>
+        <input type="text" name="email" placeholder="이메일을 입력하세요">
+        <span>비밀번호</span>
+        <input type="password" name="pass" placeholder="비밀번호를 입력하세요">
+        <span>전화번호</span>
+        <input type="text" name="phone" placeholder="전화번호를 입력하세요">
+        <input type="button" value="회원가입" id="submit">
+    </div>
+    
+</body>
+</html>
