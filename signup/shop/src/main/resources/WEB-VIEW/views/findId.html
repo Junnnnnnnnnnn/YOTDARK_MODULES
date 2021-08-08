@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        .bind{
+            display: flex;
+            flex-direction: column;
+        }
+        .bind span{
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            $(document).on("click","#submit",function(){
+                findIdSubmit();
+            });
+        });
+        
+        function findIdSubmit(){
+            var name = $(".bind input[name='name").val();
+            var email = $(".bind input[name='email").val();
+
+            var result = yotCommonConn({
+                url: "/member/confirmId",
+                name: name,
+                email: email,
+            });
+
+            alert("인증번호를 발송 했습니다.");
+            $(location).attr("href","/idAuth");
+        }
+
+        function yotCommonConn(data){
+            var obj = new Object();
+            $.ajax({
+                url: data.url,
+                data: data,
+                dataType: "json",
+                type: "post",
+                async: "false",
+                success: function(result){
+                    obj = result;
+                }
+            })
+            return obj;
+        }   
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="bind">
+        <p>아이디 찾기</p>
+        <span>이름</span>
+        <input type="text" name="name" placeholder="이름을 입력하세요">
+        <span>이메일</span>
+        <input type="text" name="email" placeholder="이메일을 입력하세요">
+        <input type="button" value="인증번호 발송" id="submit">
+    </div>
+</body>
+</html>

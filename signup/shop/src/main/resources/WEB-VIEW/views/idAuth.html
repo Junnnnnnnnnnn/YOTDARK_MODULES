@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <style>
+        .bind{
+            display: flex;
+            flex-direction: column;
+        }
+        .bind span{
+            margin-top: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+    $(function(){
+            $(document).on("click","#submit",function(){
+                findIdSubmit();
+            });
+        });
+        
+        function findIdSubmit(){
+            var auth = $(".bind input[name='auth").val();
+
+            var result = yotCommonConn({
+                url: "/member/idInfo",
+                auth: auth,
+            });
+
+            alert("아이디는 " + result.info + " 입니다.");
+            $(location).attr("href","/main")
+        }
+
+        function yotCommonConn(data){
+            var obj = new Object();
+            $.ajax({
+                url: data.url,
+                data: data,
+                dataType: "json",
+                type: "post",
+                async: "false",
+                success: function(result){
+                    obj = result;
+                }
+            })
+            return obj;
+        }   
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="bind">
+        <span>인증번호 입력란</span>
+        <input type="text" name="auth" placeholder="인증번호를 입력해주세요">
+        <input type="button" id="submit" value="인증">
+    </div>
+</body>
+</html>

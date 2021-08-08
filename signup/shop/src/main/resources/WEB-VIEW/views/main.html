@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript">
+    $(function(){
+        $(document).on("click","#signUp",function(){
+            $(location).attr("href","/singUp");
+        });
+
+        $(document).on("click","#find_id",function(){
+            $(location).attr("href","/findId");
+        });
+
+        $(document).on("click","#find_pass",function(){
+            $(location).attr("href","/findPass");
+        });
+    });
+    </script>
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" id="signUp" value="회원가입">
+    <input type="button" id="find_id" value="아이디 찾기">
+    <input type="button" id="find_pass" value="비밀번호 찾기">
+</body>
+</html>
