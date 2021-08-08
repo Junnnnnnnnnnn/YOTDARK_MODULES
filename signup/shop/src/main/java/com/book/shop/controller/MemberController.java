@@ -4,6 +4,7 @@ import com.book.shop.model.MemberRepository;
 import com.book.shop.service.MemberService;
 import com.book.shop.table.Member;
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -44,7 +45,6 @@ public class MemberController {
         member.setMember_phone(phone);
         member.setMember_email(email);
         memberService.join(member);
-        memberRepository.save(member);
         model.addAttribute("member", member);
         return "redirect:/main";
     }
